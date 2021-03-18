@@ -1,0 +1,33 @@
+@import '../css/fonts';
+
+$decor-color: #14cec3;
+
+body {
+  font-family: 'Montserrat';
+}
+
+.wrapper {
+  max-width: 100%;
+} 
+
+.container {
+  max-width: 1190px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.text-decoration::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  background-color: $decor-color;
+  width: 0%;
+  height: 2px;
+  transition: .2s;
+}
+
+.text-decoration:hover::before {
+  width: 100%;
+  left: 0;
+}
