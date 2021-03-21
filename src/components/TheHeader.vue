@@ -2,9 +2,9 @@
   <header class="header">
     <div class="header-container container">
       <div class="header__column">
-        <a href="#" class="header-logo">
+        <router-link to="/home" class="header-logo">
           <img src="@/assets/images/logo.png" alt="Igor Kostenevich logotype" />
-        </a>
+        </router-link>
       </div>
       <div class="header__column">
         <div class="header-box">
@@ -17,7 +17,7 @@
           <a href="tel:+380678684657" class="header-box-phone-number">+38 (067) 868-46-57</a>
           <div class="header-box-lang">
             <span class="active">EN</span>
-            <span>RU</span>
+            <span>РУС</span>
           </div>
         </div>
       </div>
@@ -58,6 +58,7 @@ export default {}
   &-box {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     padding: 0 10px;
 
     &-menu {
@@ -78,6 +79,7 @@ export default {}
 
         a {
           color: #fff;
+          font-size: 20px;
 
           &:hover {
             color: $decor-color;
@@ -93,6 +95,7 @@ export default {}
       padding: 0 15px 0 30px;
       margin: 0px 30px 0px 0px;
       transition: color .2s ease;
+      font-size: 18px;
 
       &:hover {
         color: $decor-color;
@@ -104,6 +107,7 @@ export default {}
         cursor: pointer;
         color: #fff;
         margin: 0px 10px 0px 0px;
+        font-size: 14px;
 
         &:last-child {
           margin: 0px 0px 0px 0px;
