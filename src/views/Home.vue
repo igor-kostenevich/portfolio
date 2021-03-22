@@ -11,29 +11,45 @@
           <div class="main-screen__info">
             <div class="main-screen__title">Игорь Костеневич</div>
             <div class="main-screen__subtitle">Front-end разработчик</div>
-            <ul class="main-screen__social-list">
-              <li><a href="https://t.me/I_kostenevich" target="_blank"></a></li>
-              <li><a href="https://wa.me/380678684657" target="_blank"></a></li>
-              <li><a href="https://join.skype.com/invite/gpJbSHSIqKb1" target="_blank"></a></li>
-              <li><a href="mailto:kostenevich9696@gmail.com"></a></li>
-              <li><a href="https://www.linkedin.com/in/igor-kostenevich/" target="_blank"></a></li>
-            </ul>
+            <app-social-block></app-social-block>
           </div>
         </div>
       </div>
     </div>
-    <div class="csdqwe">lorem1000</div>
+    <div class="content__skills skills">
+      <div class="skills__column">
+        <div class="skills__box">
+          <div class="skills__title title">Обо мне</div>
+          <p class="skills__text">Занимаюсь разработкой адаптивных и кроссбраузерных веб-сайтов и приложений.
+          </p>
+          <p class="skills__text"> Развиваюсь в направлении frontend-разработки. Изучаю новые
+            технологии и способы их применения на практике. На данный момент
+            совершенствую знания нативного JavaScript и фреймворка Vue.js.
+          </p>
+          <p class="skills__text"> Обладаю хорошими навыками коммуникации, веду активный образ жизни,
+            умею соблюдать сроки и стоически относиться к трудностям.
+          </p>
+          <a href="ikostenevich_cv.pdf" download="ikostenevich_cv_ru.pdf" target="_blank" class="download__cv text-decoration">Скачать резюме</a>
+        </div>
+      </div>
+      <div class="skills__column">
+        <app-hard-skills-block></app-hard-skills-block>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import AppHardSkillsBlock from '../components/AppHardSkillsBlock'
+import AppSocialBlock from '../components/AppSocialBlock'
+
 export default {
   name: 'Home',
-  components: {}
+  components: { AppSocialBlock, AppHardSkillsBlock }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 $decor-color: #14cec3;
 
 .content {
@@ -46,7 +62,7 @@ $decor-color: #14cec3;
   min-height: calc(100vh - 92px);
   position: relative;
   z-index: 2;
-  padding: 20px 0px;
+  padding: 30px 0px;
 
   &:after {
     content: '';
@@ -58,6 +74,19 @@ $decor-color: #14cec3;
     top: 0;
     background-color: rgba(0, 0, 0, 0.6);
   }
+
+  &:before {
+    content: '';
+    background: url('../assets/images/icons/arrow-down.svg') no-repeat;
+    width: 16px;
+    height: 31px;
+    display: block;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    z-index: 7;
+    animation: animArrowDown 2s infinite linear;
+  }
 }
 
 .main-screen {
@@ -66,6 +95,7 @@ $decor-color: #14cec3;
   align-items: center;
   position: relative;
   z-index: 5;
+  padding-bottom: 100px;
 
   &__column {
     flex: 0 1 50%;
@@ -86,9 +116,6 @@ $decor-color: #14cec3;
     overflow: hidden;
   }
 
-  &__info {
-  }
-
   &__title {
     color: #ffffff;
     font-family: 'Gabriela';
@@ -102,64 +129,58 @@ $decor-color: #14cec3;
     font-size: 24px;
     margin: 0px 0px 25px 0px;
   }
+}
 
-  &__social-list {
-    display: flex;
+// ==================================================================================
 
-    li {
-      height: 32px;
-      width: 32px;
-      margin: 0px 20px 0px 0px;
-      cursor: pointer;
-      transition: all .1s ease;
-      overflow: hidden;
+.content__skills {
+}
 
-      a {
-        display: inline-block;
-        width: inherit;
-        height: inherit;
-      }
+.skills {
+  display: flex;
 
-      &:nth-child(1) {
-        background: url('../assets/images/icons/social/telegram.svg') center / cover no-repeat;
-        border-radius: 50%;
-        border: 2px solid #fff;
+  &__column {
+    flex: 0 1 50%;
+    padding: 55px 50px 80px 50px;
 
-        &:hover {
-          background: url('../assets/images/icons/social/telegram_hover.svg') center / cover no-repeat;
-          border: 0;
-        }
-      }
-      &:nth-child(2) {
-        background: url('../assets/images/icons/social/whatsapp.svg') center / cover no-repeat;
+    &:first-child {
+      background: url('../assets/images/bg-dark.jpg') center / cover no-repeat;
+      color: #fff;
+    }
 
-        &:hover {
-          background: url('../assets/images/icons/social/whatsapp_hover.svg') center / cover no-repeat;
-        }
-      }
-      &:nth-child(3) {
-        background: url('../assets/images/icons/social/skype.svg') center / cover no-repeat;
+    &:last-child {
+      background: url('../assets/images/bg-light.jpg') center / cover no-repeat;
+    }
+  }
 
-        &:hover {
-          background: url('../assets/images/icons/social/skype_hover.svg') center / cover no-repeat;
-        }
-      }
+  .skills__box {
+    text-align: right;
+    max-width: 450px;
+    margin-left: auto;
+
+    .skills__text {
+      margin: 0px 0px 25px 0px;
+      font-size: 18px;
+      line-height: 24 / 18 * 100%;
+
       &:nth-child(4) {
-        background: url('../assets/images/icons/social/gmail.svg') center / cover no-repeat;
-        width: 40px;
-
-        &:hover {
-          background: url('../assets/images/icons/social/gmail_hover.svg') center / cover no-repeat;
-        }
-      }
-      &:nth-child(5) {
-        background: url('../assets/images/icons/social/linkedin.svg') center / cover no-repeat;
-
-        &:hover {
-          background: url('../assets/images/icons/social/linkedin_hover.svg') center / cover no-repeat;
-        }
+        margin: 0px 0px 40px 0px;
       }
     }
+
+    .download__cv {
+      position: relative;
+      font-size: 18px;
+      font-family: "Montserrat";
+      background: transparent;
+      border: 0;
+      padding: 0;
+      color: $decor-color;
+    }
+  }
+
+  &__title {
+    margin: 0px 0px 25px 0px;
   }
 }
 </style>
