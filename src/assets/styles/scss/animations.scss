@@ -1,0 +1,13 @@
+@keyframes animArrowDown {
+  0% {
+    transform: translate(-50%, 0px);
+  }
+
+  50% {
+    transform: translate(-50%, 15px);
+  }
+
+  100% {
+    transform: translate(-50%, 0px);
+  }
+}

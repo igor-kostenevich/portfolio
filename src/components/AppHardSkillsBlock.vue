@@ -1,5 +1,5 @@
 <template>
-  <div class="skills__title title">Навыки</div>
+  <h3 class="skills__title title">Навыки</h3>
   <ul class="skills__list">
     <li v-for="skill in hardSkillsList" :key="skill">{{ skill }}</li>
   </ul>
@@ -25,7 +25,7 @@ export default {
         'Avocode / Figma',
         'Firebase',
         'Windows / macOS / Ubuntu',
-        'Базовые знания: Nuxt.js, OOP'
+        'Базовые знания: Nuxt.js, OOP, PWA'
       ]
     }
   }
@@ -47,6 +47,10 @@ export default {
       height: 10px;
       display: inline-block;
       padding-left: 10px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }

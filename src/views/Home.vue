@@ -9,8 +9,8 @@
         </div>
         <div class="main-screen__column">
           <div class="main-screen__info">
-            <div class="main-screen__title">Игорь Костеневич</div>
-            <div class="main-screen__subtitle">Front-end разработчик</div>
+            <h1 class="main-screen__title">Игорь Костеневич</h1>
+            <h3 class="main-screen__subtitle">Front-end разработчик</h3>
             <app-social-block></app-social-block>
           </div>
         </div>
@@ -19,38 +19,51 @@
     <div class="content__skills skills">
       <div class="skills__column">
         <div class="skills__box">
-          <div class="skills__title title">Обо мне</div>
-          <p class="skills__text">Занимаюсь разработкой адаптивных и кроссбраузерных веб-сайтов и приложений.
+          <h3 class="skills__title title">Обо мне</h3>
+          <p class="skills__text">
+            Занимаюсь разработкой адаптивных и кроссбраузерных веб-сайтов и
+            приложений.
           </p>
-          <p class="skills__text"> Развиваюсь в направлении frontend-разработки. Изучаю новые
+          <p class="skills__text">
+            Развиваюсь в направлении frontend-разработки. Изучаю новые
             технологии и способы их применения на практике. На данный момент
             совершенствую знания нативного JavaScript и фреймворка Vue.js.
           </p>
-          <p class="skills__text"> Обладаю хорошими навыками коммуникации, веду активный образ жизни,
+          <p class="skills__text">
+            Обладаю хорошими навыками коммуникации, веду активный образ жизни,
             умею соблюдать сроки и стоически относиться к трудностям.
           </p>
-          <a href="ikostenevich_cv.pdf" download="ikostenevich_cv_ru.pdf" target="_blank" class="download__cv text-decoration">Скачать резюме</a>
+          <a
+            href="ikostenevich_cv.pdf"
+            download="ikostenevich_cv_ru.pdf"
+            target="_blank"
+            class="download__cv text-decoration"
+            >Скачать резюме</a
+          >
         </div>
       </div>
       <div class="skills__column">
         <app-hard-skills-block></app-hard-skills-block>
       </div>
     </div>
+
+    <the-works></the-works>
+
   </div>
 </template>
 
 <script>
+import TheWorks from '../components/TheWorks'
 import AppHardSkillsBlock from '../components/AppHardSkillsBlock'
 import AppSocialBlock from '../components/AppSocialBlock'
 
 export default {
   name: 'Home',
-  components: { AppSocialBlock, AppHardSkillsBlock }
+  components: { AppSocialBlock, AppHardSkillsBlock, TheWorks }
 }
 </script>
 
 <style lang="scss">
-$decor-color: #14cec3;
 
 .content {
   min-height: 100%;
@@ -101,12 +114,14 @@ $decor-color: #14cec3;
     flex: 0 1 50%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 0 50px;
 
-    &:first-child:after {
-      content: '';
+    &:first-child {
       border-right: 2px solid #ffffff;
-      right: -10%;
-      position: relative;
+      justify-content: flex-end;
+      padding-top: 40px;
+      padding-bottom: 40px;
     }
   }
 
@@ -133,9 +148,6 @@ $decor-color: #14cec3;
 
 // ==================================================================================
 
-.content__skills {
-}
-
 .skills {
   display: flex;
 
@@ -149,7 +161,8 @@ $decor-color: #14cec3;
     }
 
     &:last-child {
-      background: url('../assets/images/bg-light.jpg') center / cover no-repeat;
+      background: url('../assets/images/bg-light.jpg') center 3px / cover
+        no-repeat;
     }
   }
 
@@ -171,7 +184,7 @@ $decor-color: #14cec3;
     .download__cv {
       position: relative;
       font-size: 18px;
-      font-family: "Montserrat";
+      font-family: 'Montserrat';
       background: transparent;
       border: 0;
       padding: 0;
@@ -183,4 +196,36 @@ $decor-color: #14cec3;
     margin: 0px 0px 25px 0px;
   }
 }
+
+// .s {
+//   background: url('../assets/images/bg-light.jpg') center / cover no-repeat;
+// }
+
+// .works {
+//   padding: 50px 0;
+//   display: flex;
+//   margin: 0 -15px;
+//   flex-wrap: wrap;
+
+//   &__column {
+//     flex: 0 1 33.333%;
+//     padding: 0 15px;
+//   }
+//   &__item {
+//   }
+//   &__image {
+//     padding-bottom: 58%;
+//     position: relative;
+
+//     img {
+//       width: 100%;
+//       height: 100%;
+//       object-fit: cover;
+//       object-position: top;
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//     }
+//   }
+// }
 </style>
