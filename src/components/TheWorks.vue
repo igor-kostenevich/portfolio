@@ -8,7 +8,7 @@
         <div class="works-filter-item">Приложения</div>
       </div>
       <app-work-box></app-work-box>
-      <button class="works__btn">Показать еще</button>
+      <button class="btn works__btn">Показать еще</button>
     </div>
   </section>
 </template>
@@ -32,17 +32,8 @@ export default {
     margin: 0px 0px 40px 0px;
   }
   &__btn {
-    background: $decor-color;
     font-size: 20px;
-    color: #fbfbfb;
-    height: 40px;
-    border-radius: 10px;
-    padding: 0 40px;
-    transition: box-shadow .15s;
-
-    &:hover {
-      box-shadow: 1px 1px 5px 3px rgba(18, 118, 118, 0.25);
-    }
+    height: 46px;
   }
 }
 

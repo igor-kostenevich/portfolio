@@ -33,3 +33,16 @@ body {
   width: 100%;
   left: 0;
 }
+
+.btn {
+  width: 230px;
+  height: 36px;
+  background: $decor-color;
+  border-radius: 10px;
+  color: #fbfbfb;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 1px 1px 5px 3px rgba(18, 118, 118, 0.25);
+  }
+}

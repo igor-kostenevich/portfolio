@@ -1,53 +1,28 @@
 <template>
   <transition name="popup" mode="out-in" @enter="showContent = true">
     <div class="v-popup" v-if="ifModalOpen" @click="hideContent">
-      <div class="v-popup__body" >
-        <div class="v-popup__overlay" ></div>
+      <div class="v-popup__body">
         <transition name="popup-content" @leave="closeModal">
-          <div class="v-popup__content" v-if="showContent" @click.stop>
-            <span class="v-popup__close" @click="hideContent">&times;</span>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            incidunt provident laudantium saepe ducimus, placeat fugit itaque
-            atque quia autem iusto iure odio ut libero similique eligendi
-            assumenda, ex quos.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            incidunt provident laudantium saepe ducimus, placeat fugit itaque
-            atque quia autem iusto iure odio ut libero similique eligendi
-            assumenda, ex quos.
-
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            incidunt provident laudantium saepe ducimus, placeat fugit itaque
-            atque quia autem iusto iure odio ut libero similique eligendi
-            assumenda, ex quos.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            incidunt provident laudantium saepe ducimus, placeat fugit itaque
-            atque quia autem iusto iure odio ut libero similique eligendi
-            assumenda, ex quos.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            incidunt provident laudantium saepe ducimus, placeat fugit itaque
-            atque quia autem iusto iure odio ut libero similique eligendi
-            assumenda, ex quos.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            incidunt provident laudantium saepe ducimus, placeat fugit itaque
-            atque quia autem iusto iure odio ut libero similique eligendi
-            assumenda, ex quos.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            incidunt provident laudantium saepe ducimus, placeat fugit itaque
-            atque quia autem iusto iure odio ut libero similique eligendi
-            assumenda, ex quos.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            incidunt provident laudantium saepe ducimus, placeat fugit itaque
-            atque quia autem iusto iure odio ut libero similique eligendi
-            assumenda, ex quos.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            incidunt provident laudantium saepe ducimus, placeat fugit itaque
-            atque quia autem iusto iure odio ut libero similique eligendi
-            assumenda, ex quos.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            incidunt provident laudantium saepe ducimus, placeat fugit itaque
-            atque quia autem iusto iure odio ut libero similique eligendi
-            assumenda, ex quos.
-            <slot></slot>
+          <div
+            class="v-popup__content content-popup"
+            v-if="showContent"
+            @click.stop
+          >
+            <div class="content-popup__header">
+              <slot name="popup-title"></slot>
+              <span class="v-popup__close" @click="hideContent">&times;</span>
+            </div>
+            <div class="content-popup__body">
+              <slot name="popup-content"></slot>
+            </div>
+            <div class="content-popup__footer">
+              <div class="content-popup__footer-content">
+                <slot name="popup-footer"></slot>
+              </div>
+              <button class="btn content-popup__close-btn" @click="hideContent">
+                <slot name="popup-close-button">Закрыть</slot>
+              </button>
+            </div>
           </div>
         </transition>
       </div>
@@ -63,11 +38,6 @@ export default {
     }
   },
   props: {
-    popupName: {
-      type: String,
-      required: true,
-      default: 'abra'
-    },
     ifModalOpen: {
       type: Boolean
     }
@@ -118,16 +88,7 @@ export default {
     max-width: 800px;
     padding: 20px;
     position: relative;
-    // z-index: 101;
     cursor: default;
-
-    &_enter-animation {
-      transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
-    }
-
-    &_leave-animation {
-      transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-    }
   }
 
   &__close {
@@ -136,6 +97,27 @@ export default {
     top: 10px;
     font-size: 30px;
     cursor: pointer;
+  }
+}
+
+.content-popup {
+  &__header {
+    padding-right: 50px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__footer-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__close-btn {
+    width: 127px;
   }
 }
 

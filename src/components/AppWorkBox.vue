@@ -6,7 +6,7 @@
       :key="work.title"
     >
       <div class="works-box__item works-item">
-        <div class="works-item__image">
+        <div class="works-item__image" @click="showPopup(work)">
           <img :src="work.urlWorkImage" alt="" />
         </div>
         <div class="works-item__title" @click="showPopup(work)">
@@ -15,7 +15,22 @@
       </div>
     </div>
     <teleport to="body">
-      <app-modal @closeModal="closePopup" :ifModalOpen="isModalOpen"></app-modal>
+      <app-modal @closeModal="closePopup" :ifModalOpen="isModalOpen">
+        <template #popup-title>
+          <h3 class="popup-title">{{ workItemInfo.title }}</h3>
+        </template>
+        <template #popup-content>
+          <div class="popup-descr">{{ workItemInfo.description }}</div>
+          <div class="popup-stack"><span>Стек:</span> {{ workItemInfo.stack }}</div>
+          <div class="popup-image">
+            <img :src="workItemInfo.urlWorkMockup" alt="" />
+          </div>
+        </template>
+        <template #popup-footer>
+          <a :href="workItemInfo.urlShowProject" class="btn popup-link" target="_blank">Посмотреть проект</a>
+          <a :href="workItemInfo.urlRepo" class="btn popup-link" target="_blank">Перейти в репозиторий</a>
+        </template>
+      </app-modal>
     </teleport>
   </div>
 </template>
@@ -31,9 +46,8 @@ export default {
           title: 'Сайт детского лагеря “Семь континентов”',
           urlWorkImage: require('@/assets/images/screenshots/continent.jpg'),
           stack: 'хтмл ссс жаваскрипт гитхаб жейквери сас лес галп вью джеес',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Elementum, penatibus volutpat etiam vestibulum nunc congue. Cursus blandit tempor mi ipsum odio rhoncus.',
-          urlWorkMockup: require('@/assets/images/mockups/continent.jpg'),
+          description: 'Это описание моей работы',
+          urlWorkMockup: require('@/assets/images/mockups/bank.jpg'),
           urlRepo:
             'https://1.buffilm-hd.net/735-dobro-pozhalovat-v-zombilend-2-2019.html',
           urlShowProject: 'https://pw.mail.ru/forums/showthread.php?t=213517',
@@ -115,7 +129,7 @@ export default {
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: fill;
       object-position: top;
       position: absolute;
       top: 0;
@@ -131,6 +145,54 @@ export default {
     &:hover + .works-item__title {
       color: $decor-color;
     }
+  }
+}
+
+.popup-title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24 / 20 * 100%;
+  margin: 0px 0px 30px 0px;
+}
+
+.popup-descr {
+  font-size: 16px;
+  line-height: 20 / 16 * 100%;
+  margin: 0px 0px 25px 0px;
+}
+.popup-stack {
+  font-size: 18px;
+  line-height: 22 / 18 * 100%;
+  margin: 0px 0px 40px 0px;
+
+  span {
+    font-size: 20;
+    font-weight: 700;
+  }
+}
+.popup-image {
+  padding-bottom: 50%;
+  position: relative;
+  overflow: hidden;
+  margin: 0px 0px 70px 0px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+.popup-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px 20px 0px;
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 </style>
