@@ -42,12 +42,23 @@ export default {
       type: Boolean
     }
   },
+  mounted () {
+    document.addEventListener('keyup', this.escPress)
+  },
+  unmounted () {
+    document.removeEventListener('keyup', this.escPress)
+  },
   updated () {
     const body = document.querySelector('body')
+    const scrollWidth = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px'
+
     if (this.ifModalOpen) {
-      body.style = 'overflow: hidden'
-    } else {
-      body.style = 'overflow: auto'
+      body.style = `overflow: hidden; padding-right: ${scrollWidth}`
+      this.isOpenedModal = true
+    } else if (!this.ifModalOpen) {
+      setTimeout(function () {
+        body.style = 'overflow: auto;  padding-right: 0px;'
+      }, 800)
     }
   },
   emits: ['closeModal'],
@@ -57,6 +68,12 @@ export default {
     },
     hideContent () {
       this.showContent = false
+    },
+    escPress (e) {
+      if (e.which === 27 && this.ifModalOpen) {
+        this.hideContent()
+        console.log('ww')
+      }
     }
   }
 }
@@ -86,6 +103,7 @@ export default {
   &__content {
     background-color: #fff;
     max-width: 800px;
+    min-width: 40%;
     padding: 20px;
     position: relative;
     cursor: default;
@@ -109,15 +127,22 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    flex-wrap: wrap;
   }
 
   &__footer-content {
     display: flex;
     flex-direction: column;
+    margin-right: 20px;
   }
 
   &__close-btn {
     width: 127px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    margin-top: 20px;
   }
 }
 
@@ -148,4 +173,5 @@ export default {
 .popup-content-leave-active {
   transition: all 0.8s ease 0s;
 }
+
 </style>

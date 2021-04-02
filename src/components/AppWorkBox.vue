@@ -20,7 +20,6 @@
           <h3 class="popup-title">{{ workItemInfo.title }}</h3>
         </template>
         <template #popup-content>
-          <div class="popup-descr">{{ workItemInfo.description }}</div>
           <div class="popup-stack"><span>Стек:</span> {{ workItemInfo.stack }}</div>
           <div class="popup-image">
             <img :src="workItemInfo.urlWorkMockup" alt="" />
@@ -37,50 +36,18 @@
 
 <script>
 import AppModal from './AppModal'
+import { workItems } from '@/data/workItems.js'
+
 export default {
   components: { AppModal },
   data () {
     return {
-      workItemsInfo: [
-        {
-          title: 'Сайт детского лагеря “Семь континентов”',
-          urlWorkImage: require('@/assets/images/screenshots/continent.jpg'),
-          stack: 'хтмл ссс жаваскрипт гитхаб жейквери сас лес галп вью джеес',
-          description: 'Это описание моей работы',
-          urlWorkMockup: require('@/assets/images/mockups/bank.jpg'),
-          urlRepo:
-            'https://1.buffilm-hd.net/735-dobro-pozhalovat-v-zombilend-2-2019.html',
-          urlShowProject: 'https://pw.mail.ru/forums/showthread.php?t=213517',
-          type: 'site'
-        },
-        {
-          title: 'Сайт детского лагеря “1111 континентов”',
-          urlWorkImage: require('@/assets/images/screenshots/continent.jpg'),
-          stack: 'хтмл ссс жаваскрипт гитхаб жейквери сас лес галп вью джеес',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Elementum, penatibus volutpat etiam vestibulum nunc congue. Cursus blandit tempor mi ipsum odio rhoncus.',
-          urlWorkMockup: require('@/assets/images/mockups/continent.jpg'),
-          urlRepo:
-            'https://1.buffilm-hd.net/735-dobro-pozhalovat-v-zombilend-2-2019.html',
-          urlShowProject: 'https://pw.mail.ru/forums/showthread.php?t=213517',
-          type: 'site'
-        },
-        {
-          title: 'СSqweqweqweqweqweqwe qweqw eqwe qwe qwe qwe qwe qwe ',
-          urlWorkImage: require('@/assets/images/screenshots/continent.jpg'),
-          stack: 'хтмл ссс жаваскрипт гитхаб жейквери сас лес галп вью джеес',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Elementum, penatibus volutpat etiam vestibulum nunc congue. Cursus blandit tempor mi ipsum odio rhoncus.',
-          urlWorkMockup: require('@/assets/images/mockups/continent.jpg'),
-          urlRepo: 'https://google.com',
-          urlShowProject: 'https://pw.mail.ru/forums/showthread.php?t=213517',
-          type: 'site'
-        }
-      ],
+      workItemsInfo: workItems,
       workItemInfo: {},
       isModalOpen: false
     }
   },
+
   methods: {
     showPopup (data1) {
       this.workItemInfo = data1
