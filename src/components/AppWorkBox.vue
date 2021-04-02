@@ -3,14 +3,14 @@
     <div
       class="works-box__column"
       v-for="work in workItemsInfo"
-      :key="work.title"
+      :key="work"
     >
       <div class="works-box__item works-item">
         <div class="works-item__image" @click="showPopup(work)">
           <img :src="work.urlWorkImage" alt="" />
         </div>
         <div class="works-item__title" @click="showPopup(work)">
-          {{ work.title }}
+          {{ work.title}}
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
 
 <script>
 import AppModal from './AppModal'
-import { workItems } from '@/data/workItems.js'
+import { workItems } from '@/data/workItems'
 
 export default {
   components: { AppModal },
@@ -57,7 +57,22 @@ export default {
       this.isModalOpen = false
       this.workItemInfo = {}
     }
-  }
+  },
+  updated () {
+    this.filteredWorkItemsInfo
+  },
+  computed: {
+    filteredWorkItemsInfo () {
+      if (this.currentFilterItem === 'all') {
+        return this.workItemsInfo = workItems
+      } else if (this.currentFilterItem === 'site') {
+        return this.workItemsInfo = workItems.filter(item => item.type === 'site')
+      } else if (this.currentFilterItem === 'app') {
+        return this.workItemsInfo = workItems.filter(item => item.type === 'app')
+      }
+    }
+  },
+  props: ['currentFilterItem']
 }
 </script>
 
@@ -71,6 +86,7 @@ export default {
     flex: 0 1 33.333%;
     padding: 0px 15px;
     margin: 0px 0px 60px 0px;
+    transition: all 1s ease;
   }
 }
 
@@ -161,5 +177,20 @@ export default {
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+.flip-enter-from,
+.flip-leave-to {
+  opacity: 0;
+}
+
+.flip-enter-to,
+.flip-leave-from {
+  opacity: 1;
+}
+
+.flip-enter-active,
+.flip-leave-active {
+  transition: all 0.8s ease 0s;
 }
 </style>
