@@ -10,14 +10,16 @@
           @click="setActiveClass(link), currentFilteredItem = link.type"
         >{{ link.name }}</li>
       </ul>
-      <app-work-box :currentFilterItem="currentFilteredItem"></app-work-box>
-      <button class="btn works__btn">Показать еще</button>
+      <app-work-box :currentFilterItem="currentFilteredItem" :workToShow="worksToShow" @updateLength="updateLength"></app-work-box>
+      <button class="btn works__btn" @click="worksToShow += 3" :disabled="disabledBtn">Показать еще</button>
     </div>
   </section>
 </template>
 
 <script>
 import AppWorkBox from './AppWorkBox'
+import { workItems } from '@/data/workItems'
+
 export default {
   data () {
     return {
@@ -26,13 +28,28 @@ export default {
         { name: 'Сайты', activeClass: false, type: 'site' },
         { name: 'Приложения', activeClass: false, type: 'app' }
       ],
-      currentFilteredItem: 'all'
+      currentFilteredItem: 'all',
+      worksToShow: 6,
+      totalFilteredWorks: workItems.length
+    }
+  },
+  computed: {
+    disabledBtn(){
+      return this.worksToShow >= this.totalFilteredWorks
     }
   },
   methods: {
     setActiveClass (link) {
-      this.filterLinks.map(item => item.activeClass = false)
+      this.filterLinks.forEach(item => item.activeClass = false)
       link.activeClass = true
+    },
+    updateLength(data){
+      this.totalFilteredWorks = data
+    }
+  },
+  watch: {
+    worksToShow(){
+      this.$forceUpdate()
     }
   },
   components: { AppWorkBox }
@@ -51,6 +68,12 @@ export default {
   &__btn {
     font-size: 20px;
     height: 46px;
+
+    &:disabled {
+      background-color: rgba(180, 180, 180, 0.788);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
   }
 }
 

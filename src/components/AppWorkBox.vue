@@ -1,8 +1,8 @@
 <template>
-  <div class="works-box">
+  <transition-group tag="div" class="works-box" name="list-works">
     <div
       class="works-box__column"
-      v-for="work in workItemsInfo"
+      v-for="(work) in visibleWorks"
       :key="work"
     >
       <div class="works-box__item works-item">
@@ -10,28 +10,38 @@
           <img :src="work.urlWorkImage" alt="" />
         </div>
         <div class="works-item__title" @click="showPopup(work)">
-          {{ work.title}}
+          {{ work.title }}
         </div>
       </div>
     </div>
-    <teleport to="body">
-      <app-modal @closeModal="closePopup" :ifModalOpen="isModalOpen">
-        <template #popup-title>
-          <h3 class="popup-title">{{ workItemInfo.title }}</h3>
-        </template>
-        <template #popup-content>
-          <div class="popup-stack"><span>Стек:</span> {{ workItemInfo.stack }}</div>
-          <div class="popup-image">
-            <img :src="workItemInfo.urlWorkMockup" alt="" />
-          </div>
-        </template>
-        <template #popup-footer>
-          <a :href="workItemInfo.urlShowProject" class="btn popup-link" target="_blank">Посмотреть проект</a>
-          <a :href="workItemInfo.urlRepo" class="btn popup-link" target="_blank">Перейти в репозиторий</a>
-        </template>
-      </app-modal>
-    </teleport>
-  </div>
+  </transition-group>
+
+  <teleport to="body">
+    <app-modal @closeModal="closePopup" :ifModalOpen="isModalOpen">
+      <template #popup-title>
+        <h3 class="popup-title">{{ workItemInfo.title }}</h3>
+      </template>
+      <template #popup-content>
+        <div class="popup-stack">
+          <span>Стек:</span> {{ workItemInfo.stack }}
+        </div>
+        <div class="popup-image">
+          <img :src="workItemInfo.urlWorkMockup" alt="" />
+        </div>
+      </template>
+      <template #popup-footer>
+        <a
+          :href="workItemInfo.urlShowProject"
+          class="btn popup-link"
+          target="_blank"
+          >Посмотреть проект</a
+        >
+        <a :href="workItemInfo.urlRepo" class="btn popup-link" target="_blank"
+          >Перейти в репозиторий</a
+        >
+      </template>
+    </app-modal>
+  </teleport>
 </template>
 
 <script>
@@ -40,39 +50,45 @@ import { workItems } from '@/data/workItems'
 
 export default {
   components: { AppModal },
-  data () {
+  data() {
     return {
       workItemsInfo: workItems,
       workItemInfo: {},
-      isModalOpen: false
+      isModalOpen: false,
+      totalWorks: workItems.length,
     }
   },
-
   methods: {
-    showPopup (data1) {
-      this.workItemInfo = data1
+    showPopup(data) {
+      this.workItemInfo = data
       this.isModalOpen = true
     },
-    closePopup () {
+    closePopup() {
       this.isModalOpen = false
       this.workItemInfo = {}
     }
   },
-  updated () {
-    this.filteredWorkItemsInfo
-  },
-  computed: {
-    filteredWorkItemsInfo () {
-      if (this.currentFilterItem === 'all') {
-        return this.workItemsInfo = workItems
-      } else if (this.currentFilterItem === 'site') {
-        return this.workItemsInfo = workItems.filter(item => item.type === 'site')
-      } else if (this.currentFilterItem === 'app') {
-        return this.workItemsInfo = workItems.filter(item => item.type === 'app')
+  watch: {
+    currentFilterItem(value){
+      if (value === 'all') {
+        this.workItemsInfo = workItems
+      } else if (value === 'site') {
+        this.workItemsInfo = workItems.filter(item => item.type === 'site')
+      } else if (value === 'app') {
+        this.workItemsInfo = workItems.filter(item => item.type === 'app')
       }
+    },
+    workItemsInfo(){
+      this.$emit('updateLength', this.workItemsInfo.length)
     }
   },
-  props: ['currentFilterItem']
+  computed: {
+    visibleWorks(){
+      return this.workItemsInfo.filter((_, idx) => idx + 1 <= this.workToShow)
+    }
+  },
+  props: ['currentFilterItem', 'workToShow'],
+  emits: ['updateLength']
 }
 </script>
 
@@ -179,18 +195,20 @@ export default {
   }
 }
 
-.flip-enter-from,
-.flip-leave-to {
+.list-works-enter-from,
+.list-works-leave-to {
   opacity: 0;
+  transform: scale(0.1);
 }
 
-.flip-enter-to,
-.flip-leave-from {
-  opacity: 1;
+.list-works-enter-to,
+.list-works-leave-from {
+  opacity: 0;
+  transform: scale(1);
 }
 
-.flip-enter-active,
-.flip-leave-active {
-  transition: all 0.8s ease 0s;
+.list-works-enter-active,
+.list-works-leave-active {
+  transition: all .5s ease;
 }
 </style>
