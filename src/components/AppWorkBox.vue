@@ -2,7 +2,7 @@
   <transition-group tag="div" class="works-box" name="list-works">
     <div
       class="works-box__column"
-      v-for="(work) in visibleWorks"
+      v-for="work in visibleWorks"
       :key="work"
     >
       <div class="works-box__item works-item">
@@ -34,11 +34,12 @@
           :href="workItemInfo.urlShowProject"
           class="btn popup-link"
           target="_blank"
-          >Посмотреть проект</a
-        >
-        <a :href="workItemInfo.urlRepo" class="btn popup-link" target="_blank"
-          >Перейти в репозиторий</a
-        >
+        >Посмотреть проект</a>
+        <a
+          :href="workItemInfo.urlRepo"
+          class="btn popup-link"
+          target="_blank"
+        >Перейти в репозиторий</a>
       </template>
     </app-modal>
   </teleport>
@@ -55,7 +56,6 @@ export default {
       workItemsInfo: workItems,
       workItemInfo: {},
       isModalOpen: false,
-      totalWorks: workItems.length,
     }
   },
   methods: {
@@ -66,10 +66,10 @@ export default {
     closePopup() {
       this.isModalOpen = false
       this.workItemInfo = {}
-    }
+    },
   },
   watch: {
-    currentFilterItem(value){
+    currentFilterItem(value) {
       if (value === 'all') {
         this.workItemsInfo = workItems
       } else if (value === 'site') {
@@ -78,17 +78,17 @@ export default {
         this.workItemsInfo = workItems.filter(item => item.type === 'app')
       }
     },
-    workItemsInfo(){
+    workItemsInfo() {
       this.$emit('updateLength', this.workItemsInfo.length)
-    }
+    },
   },
   computed: {
-    visibleWorks(){
+    visibleWorks() {
       return this.workItemsInfo.filter((_, idx) => idx + 1 <= this.workToShow)
-    }
+    },
   },
   props: ['currentFilterItem', 'workToShow'],
-  emits: ['updateLength']
+  emits: ['updateLength'],
 }
 </script>
 
@@ -209,6 +209,6 @@ export default {
 
 .list-works-enter-active,
 .list-works-leave-active {
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 </style>

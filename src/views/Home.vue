@@ -46,20 +46,20 @@
         <app-hard-skills-block></app-hard-skills-block>
       </div>
     </div>
-
     <the-works></the-works>
-
+    <the-footer></the-footer>
   </div>
 </template>
 
 <script>
+import TheFooter from '../components/TheFooter'
 import TheWorks from '../components/TheWorks'
 import AppHardSkillsBlock from '../components/AppHardSkillsBlock'
 import AppSocialBlock from '../components/AppSocialBlock'
 
 export default {
   name: 'Home',
-  components: { AppSocialBlock, AppHardSkillsBlock, TheWorks }
+  components: { AppSocialBlock, AppHardSkillsBlock, TheWorks, TheFooter, }
 }
 </script>
 
@@ -161,7 +161,7 @@ export default {
     }
 
     &:last-child {
-      background: url('../assets/images/bg-light.jpg') center 3px / cover
+      background: url('../assets/images/bg-light.jpg') center / cover
         no-repeat;
     }
   }
@@ -196,36 +196,4 @@ export default {
     margin: 0px 0px 25px 0px;
   }
 }
-
-// .s {
-//   background: url('../assets/images/bg-light.jpg') center / cover no-repeat;
-// }
-
-// .works {
-//   padding: 50px 0;
-//   display: flex;
-//   margin: 0 -15px;
-//   flex-wrap: wrap;
-
-//   &__column {
-//     flex: 0 1 33.333%;
-//     padding: 0 15px;
-//   }
-//   &__item {
-//   }
-//   &__image {
-//     padding-bottom: 58%;
-//     position: relative;
-
-//     img {
-//       width: 100%;
-//       height: 100%;
-//       object-fit: cover;
-//       object-position: top;
-//       position: absolute;
-//       top: 0;
-//       left: 0;
-//     }
-//   }
-// }
 </style>

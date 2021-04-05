@@ -6,12 +6,24 @@
         <li
           v-for="link in filterLinks"
           :key="link.name"
-          :class="['works-filter-item', {'active': link.activeClass}]"
-          @click="setActiveClass(link), currentFilteredItem = link.type"
-        >{{ link.name }}</li>
+          :class="['works-filter-item', { active: link.activeClass }]"
+          @click="setActiveClass(link), (currentFilteredItem = link.type)"
+        >
+          {{ link.name }}
+        </li>
       </ul>
-      <app-work-box :currentFilterItem="currentFilteredItem" :workToShow="worksToShow" @updateLength="updateLength"></app-work-box>
-      <button class="btn works__btn" @click="worksToShow += 3" :disabled="disabledBtn">Показать еще</button>
+      <app-work-box
+        :currentFilterItem="currentFilteredItem"
+        :workToShow="worksToShow"
+        @updateLength="updateLength"
+      ></app-work-box>
+      <button
+        class="btn works__btn"
+        @click="worksToShow += 3"
+        :disabled="disabledBtn"
+      >
+        Показать еще
+      </button>
     </div>
   </section>
 </template>
@@ -21,38 +33,38 @@ import AppWorkBox from './AppWorkBox'
 import { workItems } from '@/data/workItems'
 
 export default {
-  data () {
+  data() {
     return {
       filterLinks: [
         { name: 'Все работы', activeClass: true, type: 'all' },
         { name: 'Сайты', activeClass: false, type: 'site' },
-        { name: 'Приложения', activeClass: false, type: 'app' }
+        { name: 'Приложения', activeClass: false, type: 'app' },
       ],
       currentFilteredItem: 'all',
       worksToShow: 6,
-      totalFilteredWorks: workItems.length
+      totalFilteredWorks: workItems.length,
     }
   },
   computed: {
-    disabledBtn(){
+    disabledBtn() {
       return this.worksToShow >= this.totalFilteredWorks
-    }
+    },
   },
   methods: {
-    setActiveClass (link) {
+    setActiveClass(link) {
       this.filterLinks.forEach(item => item.activeClass = false)
       link.activeClass = true
     },
-    updateLength(data){
+    updateLength(data) {
       this.totalFilteredWorks = data
-    }
+    },
   },
   watch: {
-    worksToShow(){
+    worksToShow() {
       this.$forceUpdate()
-    }
+    },
   },
-  components: { AppWorkBox }
+  components: { AppWorkBox },
 }
 </script>
 
@@ -100,5 +112,4 @@ export default {
     }
   }
 }
-
 </style>
