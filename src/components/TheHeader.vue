@@ -1,27 +1,21 @@
 <template>
   <header class="header">
     <div class="header__container container">
-        <router-link to="/home" class="header-logo">
-          <img src="@/assets/images/logo.png" alt="Igor Kostenevich logotype" />
-        </router-link>
-        <div class="header-box">
-          <app-navbar></app-navbar>
-          <!-- <nav class="header-box-menu">
-            <ul class="header-box-menu-list">
-              <li class="header-box-menu-link"><a href="#" class="text-decoration">Обо мне</a></li>
-              <li class="header-box-menu-link"><a href="#" class="text-decoration">Мои работы</a></li>
-            </ul>
-          </nav> -->
-          <a href="tel:+380678684657" class="header-box-phone-number">+38 (067) 868-46-57</a>
-          <div class="header-box-lang">
-            <span
-              v-for="(lang, idx) in langItems"
-              :key="lang.locale"
-              :class="{'active': idx === activeLangIndex}"
-              @click="setActiveLang(lang, idx)"
-            >{{lang.name}}</span>
-          </div>
+      <router-link to="/home" class="header-logo">
+        <img src="@/assets/images/logo.png" alt="Igor Kostenevich logotype" />
+      </router-link>
+      <div class="header-box">
+        <app-navbar class="header__menu"></app-navbar>
+        <a href="tel:+380678684657" class="header-box-phone-number"><span>+38 (067) 868-46-57</span></a>
+        <div class="header-box-lang">
+          <span
+            v-for="(lang, idx) in langItems"
+            :key="lang.locale"
+            :class="{ active: idx === activeLangIndex }"
+            @click="setActiveLang(lang, idx)"
+          >{{ lang.name }}</span>
         </div>
+      </div>
     </div>
   </header>
 </template>
@@ -29,19 +23,22 @@
 <script>
 import AppNavbar from './AppNavbar'
 export default {
-  components: { AppNavbar, },
-  data(){
+  components: { AppNavbar },
+  data() {
     return {
-      langItems: [{name: 'РУС', locale: 'ru-RU'}, {name: 'EN', locale: 'en-US'}],
+      langItems: [
+        { name: 'РУС', locale: 'ru-RU' },
+        { name: 'EN', locale: 'en-US' },
+      ],
       activeLangIndex: 0,
-      currentLocale: 'ru-RU'
+      currentLocale: 'ru-RU',
     }
   },
   methods: {
-    setActiveLang(lang, idx){
+    setActiveLang(lang, idx) {
       this.activeLangIndex = idx
       this.currentLocale = lang.locale
-    }
+    },
   },
 }
 </script>
@@ -50,7 +47,6 @@ export default {
 @import '@/assets/styles/scss/main';
 
 .header {
-  // height: 92px;
   width: 100vw;
   position: fixed;
   top: 0;
@@ -66,7 +62,13 @@ export default {
     min-height: 92px;
   }
 
+  &__menu {
+    margin-right: 60px;
+  }
+
   &-logo {
+    position: relative;
+    z-index: 2;
   }
 
   &-box {
@@ -75,41 +77,16 @@ export default {
     align-items: center;
     padding: 0 10px;
 
-    // &-menu {
-    //   margin: 0px 60px 0px 0px;
-
-    //   &-list {
-    //     display: flex;
-    //   }
-
-    //   &-link {
-    //     margin: 0px 25px 0px 0px;
-    //     font-family: 'Alice';
-    //     position: relative;
-
-    //     &:last-child {
-    //       margin: 0px 0px 0px 0px;
-    //     }
-
-    //     a {
-    //       color: #fff;
-    //       font-size: 20px;
-
-    //       &:hover {
-    //         color: $decor-color;
-    //       }
-    //     }
-    //   }
-    // }
-
     &-phone-number {
-      background: url("../assets/images/icons/phone.svg") left no-repeat;
+      background: url('../assets/images/icons/phone.svg') left no-repeat;
       font-family: 'Alice';
       color: #fff;
-      padding: 0 15px 0 30px;
+      padding: 0 0 0 30px;
       margin: 0px 30px 0px 0px;
-      transition: color .2s ease;
+      transition: color 0.2s ease;
       font-size: 18px;
+      position: relative;
+      z-index: 2;
 
       &:hover {
         color: $decor-color;
@@ -117,12 +94,15 @@ export default {
     }
 
     &-lang {
+      position: relative;
+      z-index: 2;
+
       span {
         cursor: pointer;
         color: #fff;
         padding: 0px 5px;
         font-size: 14px;
-        transition: color .3s ease;
+        transition: color 0.3s ease;
 
         &:last-child {
           margin: 0px 0px 0px 0px;
@@ -132,6 +112,26 @@ export default {
           color: $decor-color;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header__menu {
+    order: 3;
+    margin-right: 0px;
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-box-phone-number {
+    height: 20px;
+    width: 20px;
+    margin: 0px 15px 0px 0px;
+
+    span {
+      display: none;
     }
   }
 }
