@@ -72,7 +72,6 @@ export default {
     escPress (e) {
       if (e.which === 27 && this.ifModalOpen) {
         this.hideContent()
-        console.log('ww')
       }
     }
   }

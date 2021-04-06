@@ -1,5 +1,5 @@
 <template>
-  <section class="content__works works">
+  <section class="content__works works" id="works">
     <div class="works__container container">
       <h3 class="works__title title">Мои работы</h3>
       <ul class="works-filter">

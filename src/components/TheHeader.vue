@@ -1,55 +1,69 @@
 <template>
   <header class="header">
-    <div class="header-container container">
-      <div class="header__column">
+    <div class="header__container container">
         <router-link to="/home" class="header-logo">
           <img src="@/assets/images/logo.png" alt="Igor Kostenevich logotype" />
         </router-link>
-      </div>
-      <div class="header__column">
         <div class="header-box">
-          <nav class="header-box-menu">
+          <app-navbar></app-navbar>
+          <!-- <nav class="header-box-menu">
             <ul class="header-box-menu-list">
               <li class="header-box-menu-link"><a href="#" class="text-decoration">Обо мне</a></li>
               <li class="header-box-menu-link"><a href="#" class="text-decoration">Мои работы</a></li>
             </ul>
-          </nav>
+          </nav> -->
           <a href="tel:+380678684657" class="header-box-phone-number">+38 (067) 868-46-57</a>
           <div class="header-box-lang">
-            <span class="active">EN</span>
-            <span>РУС</span>
+            <span
+              v-for="(lang, idx) in langItems"
+              :key="lang.locale"
+              :class="{'active': idx === activeLangIndex}"
+              @click="setActiveLang(lang, idx)"
+            >{{lang.name}}</span>
           </div>
         </div>
-      </div>
     </div>
   </header>
 </template>
 
 <script>
-export default {}
+import AppNavbar from './AppNavbar'
+export default {
+  components: { AppNavbar, },
+  data(){
+    return {
+      langItems: [{name: 'РУС', locale: 'ru-RU'}, {name: 'EN', locale: 'en-US'}],
+      activeLangIndex: 0,
+      currentLocale: 'ru-RU'
+    }
+  },
+  methods: {
+    setActiveLang(lang, idx){
+      this.activeLangIndex = idx
+      this.currentLocale = lang.locale
+    }
+  },
+}
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/scss/main';
 
 .header {
-  height: 92px;
-  background: rgba(6, 6, 6, 0.8);
+  // height: 92px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  background: rgba(6, 6, 6, 0.9);
 
-  &-container {
+  &__container {
     display: flex;
     height: 100%;
+    justify-content: space-between;
     align-items: center;
-  }
-
-  &__column {
-    &:first-child {
-      flex: 0 1 130px;
-    }
-
-    &:last-child {
-      flex: 0 1 100%;
-    }
+    min-height: 92px;
   }
 
   &-logo {
@@ -61,32 +75,32 @@ export default {}
     align-items: center;
     padding: 0 10px;
 
-    &-menu {
-      margin: 0px 60px 0px 0px;
+    // &-menu {
+    //   margin: 0px 60px 0px 0px;
 
-      &-list {
-        display: flex;
-      }
+    //   &-list {
+    //     display: flex;
+    //   }
 
-      &-link {
-        margin: 0px 25px 0px 0px;
-        font-family: 'Alice';
-        position: relative;
+    //   &-link {
+    //     margin: 0px 25px 0px 0px;
+    //     font-family: 'Alice';
+    //     position: relative;
 
-        &:last-child {
-          margin: 0px 0px 0px 0px;
-        }
+    //     &:last-child {
+    //       margin: 0px 0px 0px 0px;
+    //     }
 
-        a {
-          color: #fff;
-          font-size: 20px;
+    //     a {
+    //       color: #fff;
+    //       font-size: 20px;
 
-          &:hover {
-            color: $decor-color;
-          }
-        }
-      }
-    }
+    //       &:hover {
+    //         color: $decor-color;
+    //       }
+    //     }
+    //   }
+    // }
 
     &-phone-number {
       background: url("../assets/images/icons/phone.svg") left no-repeat;
@@ -106,8 +120,9 @@ export default {}
       span {
         cursor: pointer;
         color: #fff;
-        margin: 0px 10px 0px 0px;
+        padding: 0px 5px;
         font-size: 14px;
+        transition: color .3s ease;
 
         &:last-child {
           margin: 0px 0px 0px 0px;

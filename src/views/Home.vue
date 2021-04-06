@@ -1,6 +1,6 @@
 <template>
-  <div class="content">
-    <div class="content__fullscreen">
+  <main class="content">
+    <section class="content__fullscreen" id="main-section">
       <div class="main-screen container">
         <div class="main-screen__column">
           <div class="main-screen__image">
@@ -15,8 +15,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="content__skills skills">
+    </section>
+    <section class="content__skills skills" id="skills">
       <div class="skills__column">
         <div class="skills__box">
           <h3 class="skills__title title">Обо мне</h3>
@@ -45,21 +45,19 @@
       <div class="skills__column">
         <app-hard-skills-block></app-hard-skills-block>
       </div>
-    </div>
+    </section>
     <the-works></the-works>
-    <the-footer></the-footer>
-  </div>
+  </main>
 </template>
 
 <script>
-import TheFooter from '../components/TheFooter'
 import TheWorks from '../components/TheWorks'
 import AppHardSkillsBlock from '../components/AppHardSkillsBlock'
 import AppSocialBlock from '../components/AppSocialBlock'
 
 export default {
   name: 'Home',
-  components: { AppSocialBlock, AppHardSkillsBlock, TheWorks, TheFooter, }
+  components: { AppSocialBlock, AppHardSkillsBlock, TheWorks}
 }
 </script>
 
@@ -72,7 +70,7 @@ export default {
 .content__fullscreen {
   display: flex;
   background: url('../assets/images/main-bg.jpg') center / cover no-repeat;
-  min-height: calc(100vh - 92px);
+  min-height: 100vh;
   position: relative;
   z-index: 2;
   padding: 30px 0px;
@@ -108,7 +106,7 @@ export default {
   align-items: center;
   position: relative;
   z-index: 5;
-  padding-bottom: 100px;
+  padding: 100px 0;
 
   &__column {
     flex: 0 1 50%;
