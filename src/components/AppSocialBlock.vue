@@ -23,6 +23,10 @@ export default {}
 .social-list {
   display: flex;
 
+  @media (max-width: 768px){
+    justify-content: center;
+  }
+
   li {
     height: 32px;
     width: 32px;
@@ -30,6 +34,10 @@ export default {}
     cursor: pointer;
     transition: all 0.1s ease;
     overflow: hidden;
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     a {
       display: inline-block;
@@ -95,6 +103,15 @@ export default {}
         background: url('../assets/images/icons/social/github_hover.svg')
           center / cover no-repeat;
           transition: .2s;
+      }
+    }
+
+    @media (max-width: 480px){
+      width: 22px;
+      height: 22px;
+
+      &:nth-child(4){
+        width: 28px;
       }
     }
   }

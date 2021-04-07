@@ -98,11 +98,24 @@ export default {
   margin: 0 -15px;
   flex-wrap: wrap;
 
+  @media (max-width: 768px){
+    margin: 0 -7px;
+  }
+
   &__column {
     flex: 0 1 33.333%;
     padding: 0px 15px;
     margin: 0px 0px 60px 0px;
     transition: all 1s ease;
+
+    @media (max-width: 768px){
+      flex: 0 1 50%;
+      padding: 0px 7px;
+    }
+
+    @media (max-width: 480px){
+      flex: 0 1 100%;
+    }
   }
 }
 
@@ -124,6 +137,7 @@ export default {
     padding-bottom: 58%;
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
 
     img {
       width: 100%;

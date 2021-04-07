@@ -108,6 +108,11 @@ export default {
   z-index: 5;
   padding: 100px 0;
 
+  @media (max-width: 768px){
+    flex-wrap: wrap;
+    align-self: flex-start;
+  }
+
   &__column {
     flex: 0 1 50%;
     display: flex;
@@ -118,8 +123,19 @@ export default {
     &:first-child {
       border-right: 2px solid #ffffff;
       justify-content: flex-end;
-      padding-top: 40px;
-      padding-bottom: 40px;
+      padding: 40px 50px 40px 0px;
+    }
+
+    @media (max-width: 768px){
+      flex: 0 1 100%;
+      text-align: center;
+      padding: 0 15px;
+
+      &:first-child {
+        justify-content: center;
+        border-right: 0;
+        padding: 40px 0;
+      }
     }
   }
 
@@ -134,6 +150,10 @@ export default {
     font-family: 'Gabriela';
     font-size: 55px;
     margin: 0px 0px 25px 0px;
+
+    @media (max-width: 480px){
+      font-size: 44px;
+    }
   }
 
   &__subtitle {
@@ -141,6 +161,10 @@ export default {
     font-family: 'Alice';
     font-size: 24px;
     margin: 0px 0px 25px 0px;
+
+    @media (max-width: 480px){
+      font-size: 22px;
+    }
   }
 }
 
@@ -148,6 +172,7 @@ export default {
 
 .skills {
   display: flex;
+  flex-wrap: wrap-reverse;
 
   &__column {
     flex: 0 1 50%;
@@ -159,8 +184,12 @@ export default {
     }
 
     &:last-child {
-      background: url('../assets/images/bg-light.jpg') center / cover
-        no-repeat;
+      background: url('../assets/images/bg-light.jpg') center / cover no-repeat;
+    }
+
+    @media (max-width: 768px){
+      flex: 0 1 100%;
+      padding: 40px 20px 50px 20px;
     }
   }
 
@@ -177,6 +206,10 @@ export default {
       &:nth-child(4) {
         margin: 0px 0px 40px 0px;
       }
+
+      @media (max-width: 425px){
+        font-size: 16px;
+      }
     }
 
     .download__cv {
@@ -187,6 +220,11 @@ export default {
       border: 0;
       padding: 0;
       color: $decor-color;
+    }
+
+    @media (max-width: 768px){
+      max-width: 100%;
+      text-align: left;
     }
   }
 

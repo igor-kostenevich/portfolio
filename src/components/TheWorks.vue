@@ -87,6 +87,10 @@ export default {
       box-shadow: none;
     }
   }
+
+  @media (max-width: 480px){
+    padding: 50px 0;
+  }
 }
 
 .works-filter {
@@ -109,6 +113,11 @@ export default {
 
     &:last-child {
       margin-right: 0;
+    }
+
+    @media (max-width: 425px){
+      margin: 0px 15px 0px 0px;
+      font-size: 14px;
     }
   }
 }

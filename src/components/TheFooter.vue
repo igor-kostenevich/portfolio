@@ -33,4 +33,28 @@ export default {
     margin-right: 20px;
   }
 }
+
+@media (max-width: 768px){
+  .footer {
+    padding: 30px 0px;
+  }
+  .footer-info {
+    flex-direction: column;
+    align-items: center;
+
+    span {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media (max-width: 480px){
+  .footer  {
+    padding: 20px 0px;
+  }
+
+  .footer-info span {
+    font-size: 24px;
+  }
+}
 </style>

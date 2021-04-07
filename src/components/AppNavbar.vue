@@ -159,7 +159,7 @@ export default {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
     padding: 130px 30px 30px 30px;
-    left: -100%;
+    left: -150%;
     transition: left 0.3s ease;
     overflow: auto;
 
