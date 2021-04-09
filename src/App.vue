@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper" v-cloak>
     <the-header></the-header>
-
     <router-view />
     <the-footer></the-footer>
   </div>

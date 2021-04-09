@@ -2,7 +2,7 @@
   <div class="menu">
     <div
       class="menu__icon"
-      @click="toggleClass"
+      @click.stop="toggleClass"
       :class="{ active: activeClass }"
     >
       <span></span>
@@ -26,6 +26,7 @@ export default {
   methods: {
     toggleClass() {
       const body = document.querySelector('body')
+
       this.activeClass = !this.activeClass
       body.classList.toggle('lock')
     },
@@ -42,7 +43,9 @@ export default {
           behavior: 'smooth',
         })
 
-        this.toggleClass()
+        this.activeClass = false
+        document.querySelector('body').classList.remove('lock')
+
         e.preventDefault()
       }
     },
@@ -176,6 +179,10 @@ export default {
       height: 92px; // header height
       background: rgba(6, 6, 6, 1);
       z-index: 2;
+
+      @media (max-width: 480px){
+        height: 62px;
+      }
     }
   }
 

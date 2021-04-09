@@ -6,7 +6,14 @@
       </router-link>
       <div class="header-box">
         <app-navbar class="header__menu"></app-navbar>
-        <a href="tel:+380678684657" class="header-box-phone-number"><span>+38 (067) 868-46-57</span></a>
+        <a href="tel:+380678684657" class="header-box-phone-number">
+          <inline-svg
+          :src="require('../assets/images/icons/phone.svg')"
+          height="25"
+          width="25"
+          class="icon-phone"
+        ></inline-svg>
+        <span>+38 (067) 868-46-57</span></a>
         <div class="header-box-lang">
           <span
             v-for="(lang, idx) in langItems"
@@ -22,8 +29,10 @@
 
 <script>
 import AppNavbar from './AppNavbar'
+import InlineSvg from 'vue-inline-svg'
+
 export default {
-  components: { AppNavbar },
+  components: { AppNavbar, InlineSvg },
   data() {
     return {
       langItems: [
@@ -60,6 +69,10 @@ export default {
     justify-content: space-between;
     align-items: center;
     min-height: 92px;
+
+    @media (max-width: 480px){
+      min-height: 62px;
+    }
   }
 
   &__menu {
@@ -69,6 +82,16 @@ export default {
   &-logo {
     position: relative;
     z-index: 2;
+
+    @media (max-width: 480px){
+      height: 40px;
+      width: 40px;
+
+      img {
+        width: inherit;
+        height: inherit;
+      }
+    }
   }
 
   &-box {
@@ -78,15 +101,19 @@ export default {
     padding: 0 10px;
 
     &-phone-number {
-      background: url('../assets/images/icons/phone.svg') left no-repeat;
+      display: flex;
+      align-items: center;
       font-family: 'Alice';
       color: #fff;
-      padding: 0 0 0 30px;
       margin: 0px 30px 0px 0px;
       transition: color 0.2s ease;
       font-size: 18px;
       position: relative;
       z-index: 2;
+
+      .icon-phone {
+        margin-right: 10px;
+      }
 
       &:hover {
         color: $decor-color;
@@ -96,6 +123,10 @@ export default {
     &-lang {
       position: relative;
       z-index: 2;
+
+      @media (max-width: 480px){
+        padding-top: 4px;
+      }
 
       span {
         cursor: pointer;
@@ -110,6 +141,10 @@ export default {
 
         &.active {
           color: $decor-color;
+        }
+
+         @media (max-width: 480px){
+          font-size: 16px;
         }
       }
     }
@@ -126,8 +161,6 @@ export default {
 
 @media (max-width: 480px) {
   .header-box-phone-number {
-    height: 20px;
-    width: 20px;
     margin: 0px 15px 0px 0px;
 
     span {
@@ -135,4 +168,5 @@ export default {
     }
   }
 }
+
 </style>

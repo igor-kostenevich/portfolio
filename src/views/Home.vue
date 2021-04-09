@@ -113,6 +113,10 @@ export default {
     align-self: flex-start;
   }
 
+  @media (max-width: 480px){
+    padding: 60px 0 100px;
+  }
+
   &__column {
     flex: 0 1 50%;
     display: flex;
