@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper" v-cloak>
     <the-header></the-header>
-    <router-view />
-    <the-footer></the-footer>
+    <router-view/>
+    <the-footer :key="locale"></the-footer>
   </div>
 </template>
 
@@ -12,7 +12,13 @@ import TheHeader from './components/TheHeader'
 
 export default {
   data () {
-    return {}
+    return {
+    }
+  },
+  computed: {
+    locale() {
+      return this.$store.getters.changeLocale
+    }
   },
   components: { TheHeader, TheFooter, }
 }

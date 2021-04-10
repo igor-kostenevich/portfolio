@@ -5,7 +5,7 @@
         <img src="@/assets/images/logo.png" alt="Igor Kostenevich logotype" />
       </router-link>
       <div class="header-box">
-        <app-navbar class="header__menu"></app-navbar>
+        <app-navbar class="header__menu" :key="locale"></app-navbar>
         <a href="tel:+380678684657" class="header-box-phone-number">
           <inline-svg
           :src="require('../assets/images/icons/phone.svg')"
@@ -19,7 +19,7 @@
             v-for="(lang, idx) in langItems"
             :key="lang.locale"
             :class="{ active: idx === activeLangIndex }"
-            @click="setActiveLang(lang, idx)"
+            @click="setActiveLang(lang, idx), changeLang()"
           >{{ lang.name }}</span>
         </div>
       </div>
@@ -36,19 +36,30 @@ export default {
   data() {
     return {
       langItems: [
-        { name: 'РУС', locale: 'ru-RU' },
-        { name: 'EN', locale: 'en-US' },
+        { name: 'РУС', locale: 'ru' },
+        { name: 'EN', locale: 'en' },
       ],
       activeLangIndex: 0,
-      currentLocale: 'ru-RU',
     }
   },
+
   methods: {
     setActiveLang(lang, idx) {
       this.activeLangIndex = idx
-      this.currentLocale = lang.locale
+      this.$store.commit('changeLocale', lang.locale)
+    },
+    changeLang() {
+      this.changeI18N(this.$store.getters.currentLocale)
     },
   },
+
+  computed: {
+    locale() {
+      return this.$store.getters.changeLocale
+    }
+  },
+
+  inject: ['changeI18N'],
 }
 </script>
 

@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer__container container">
       <div class="footer-info">
-        <span>Связь со мной: </span>
+        <span> {{ $i18n('app.footerText') }} </span>
         <app-social-block></app-social-block>
       </div>
     </div>

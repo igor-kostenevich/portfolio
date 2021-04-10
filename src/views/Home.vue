@@ -1,5 +1,5 @@
 <template>
-  <main class="content">
+  <main class="content" :key="locale" >
     <section class="content__fullscreen" id="main-section">
       <div class="main-screen container">
         <div class="main-screen__column">
@@ -9,7 +9,7 @@
         </div>
         <div class="main-screen__column">
           <div class="main-screen__info">
-            <h1 class="main-screen__title">Игорь Костеневич</h1>
+            <h1 class="main-screen__title"> {{$i18n('app.name') }}</h1>
             <h3 class="main-screen__subtitle">Front-end разработчик</h3>
             <app-social-block></app-social-block>
           </div>
@@ -57,6 +57,11 @@ import AppSocialBlock from '../components/AppSocialBlock'
 
 export default {
   name: 'Home',
+  computed: {
+    locale() {
+      return this.$store.getters.changeLocale
+    }
+  },
   components: { AppSocialBlock, AppHardSkillsBlock, TheWorks}
 }
 </script>
