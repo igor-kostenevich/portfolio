@@ -49,10 +49,6 @@ export default {
         e.preventDefault()
       }
     },
-
-    s() {
-      this.$forceUpdate()
-    }
   },
   mounted() {
     // smоoth scrolling

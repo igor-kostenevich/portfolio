@@ -25,10 +25,10 @@ export default {
         'Avocode / Figma',
         'Firebase',
         'Windows / macOS / Ubuntu',
-        'Базовые знания: Nuxt.js, OOP, PWA'
+        `${this.$i18n('app.worksLabel')}: Nuxt.js, OOP, PWA`
       ]
     }
-  }
+  },
 }
 </script>
 

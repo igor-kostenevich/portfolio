@@ -1,6 +1,6 @@
 <template>
-  <main class="content" :key="locale" >
-    <section class="content__fullscreen" id="main-section">
+  <main class="content"  >
+    <section class="content__fullscreen" id="main-section" :key="locale">
       <div class="main-screen container">
         <div class="main-screen__column">
           <div class="main-screen__image">
@@ -16,7 +16,7 @@
         </div>
       </div>
     </section>
-    <section class="content__skills skills" id="skills">
+    <section class="content__skills skills" id="skills" :key="locale">
       <div class="skills__column">
         <div class="skills__box">
           <h3 class="skills__title title">Обо мне</h3>

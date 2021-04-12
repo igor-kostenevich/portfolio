@@ -1,17 +1,18 @@
 <template>
   <section class="content__works works" id="works">
     <div class="works__container container">
-      <h3 class="works__title title">Мои работы</h3>
-      <ul class="works-filter">
+      <h3 class="works__title title">{{ $i18n('app.worksTitle') }}</h3>
+      <!-- <ul class="works-filter" >
         <li
           v-for="link in filterLinks"
-          :key="link.name"
+          :key="link"
           :class="['works-filter-item', { active: link.activeClass }]"
-          @click="setActiveClass(link), (currentFilteredItem = link.type)"
+          @click="setActiveClass(link), currentFilteredItem = link.type"
         >
           {{ link.name }}
         </li>
-      </ul>
+      </ul> -->
+      <app-filter :key="locale" @filteredItem="getFilteredItem"></app-filter>
       <app-work-box
         :currentFilterItem="currentFilteredItem"
         :workToShow="worksToShow"
@@ -22,49 +23,46 @@
         @click="worksToShow += 3"
         :disabled="disabledBtn"
       >
-        Показать еще
+        {{ $i18n('app.btnShowMore')}}
       </button>
     </div>
   </section>
 </template>
 
 <script>
+import AppFilter from './AppFilter'
 import AppWorkBox from './AppWorkBox'
-import { workItems } from '@/data/workItems'
 
 export default {
   data() {
     return {
-      filterLinks: [
-        { name: 'Все работы', activeClass: true, type: 'all' },
-        { name: 'Сайты', activeClass: false, type: 'site' },
-        { name: 'Приложения', activeClass: false, type: 'app' },
-      ],
       currentFilteredItem: 'all',
       worksToShow: 6,
-      totalFilteredWorks: workItems.length,
+      totalFilteredWorks: null,
     }
   },
   computed: {
     disabledBtn() {
       return this.worksToShow >= this.totalFilteredWorks
     },
+    locale() {
+      return this.$store.getters.changeLocale
+    }
   },
   methods: {
-    setActiveClass(link) {
-      this.filterLinks.forEach(item => item.activeClass = false)
-      link.activeClass = true
-    },
     updateLength(data) {
       this.totalFilteredWorks = data
     },
+    getFilteredItem(item){
+      this.currentFilteredItem = item
+    }
   },
   watch: {
     worksToShow() {
       this.$forceUpdate()
     },
   },
-  components: { AppWorkBox },
+  components: { AppWorkBox, AppFilter },
 }
 </script>
 
@@ -90,35 +88,6 @@ export default {
 
   @media (max-width: 480px){
     padding: 50px 0;
-  }
-}
-
-.works-filter {
-  display: flex;
-  margin: 0px 0px 60px 0px;
-
-  .works-filter-item {
-    margin: 0px 25px 0px 0px;
-    transition: all 0.5s;
-
-    &:hover {
-      cursor: pointer;
-      color: $decor-color;
-      text-decoration: underline;
-    }
-
-    &.active {
-      color: $decor-color;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    @media (max-width: 425px){
-      margin: 0px 15px 0px 0px;
-      font-size: 14px;
-    }
   }
 }
 </style>
