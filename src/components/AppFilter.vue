@@ -3,8 +3,8 @@
     <li
       v-for="link in filterLinks"
       :key="link"
-      :class="['works-filter-item', { active: link.activeClass }]"
-      @click="setActiveClass(link), $emit('filteredItem', link.type)"
+      :class="['works-filter-item', { active: currentFilteredItem === link.type }]"
+      @click="$emit('filteredItem', link.type)"
     >
       {{ link.name }}
     </li>
@@ -16,20 +16,19 @@ export default {
   data() {
     return {
       filterLinks: [
-        { name: this.$i18n('links.allWorks'), activeClass: true, type: 'all' },
-        { name: this.$i18n('links.site'), activeClass: false, type: 'site' },
-        { name: this.$i18n('links.app'), activeClass: false, type: 'app' },
+        { name: this.$i18n('links.allWorks'), type: 'all' },
+        { name: this.$i18n('links.site'), type: 'site' },
+        { name: this.$i18n('links.app'), type: 'app' },
       ],
     }
   },
 
-  methods: {
-    setActiveClass(link) {
-      this.filterLinks.forEach((item) => {
-        item.activeClass = false
-      })
-      link.activeClass = true
-    },
+  props: {
+    currentFilteredItem: {
+      type: String,
+      default: 'all',
+      require: true
+    }
   },
 }
 </script>

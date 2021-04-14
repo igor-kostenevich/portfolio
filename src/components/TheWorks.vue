@@ -2,21 +2,12 @@
   <section class="content__works works" id="works">
     <div class="works__container container">
       <h3 class="works__title title">{{ $i18n('app.worksTitle') }}</h3>
-      <!-- <ul class="works-filter" >
-        <li
-          v-for="link in filterLinks"
-          :key="link"
-          :class="['works-filter-item', { active: link.activeClass }]"
-          @click="setActiveClass(link), currentFilteredItem = link.type"
-        >
-          {{ link.name }}
-        </li>
-      </ul> -->
-      <app-filter :key="locale" @filteredItem="getFilteredItem"></app-filter>
+      <app-filter :key="locale" @filteredItem="getFilteredItem" :currentFilteredItem="currentFilteredItem"></app-filter>
       <app-work-box
-        :currentFilterItem="currentFilteredItem"
+        :currentFilteredItem="currentFilteredItem"
         :workToShow="worksToShow"
         @updateLength="updateLength"
+        :key="locale"
       ></app-work-box>
       <button
         class="btn works__btn"

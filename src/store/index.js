@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    currentLocale: 'ru',
+    currentLocale: 'en',
     isChangeLocale: false
   },
   mutations: {

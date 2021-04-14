@@ -1,11 +1,11 @@
 <template>
-  <transition-group tag="div" class="works-box" name="list-works">
+  <transition-group tag="div" class="works-box" name="list-works" >
     <div class="works-box__column" v-for="work in visibleWorks" :key="work">
       <div class="works-box__item works-item">
         <div class="works-item__image" @click="showPopup(work)">
           <img :src="work.urlWorkImage" alt="" />
         </div>
-        <div class="works-item__title" @click="showPopup(work)">
+        <div class="works-item__title" @click="showPopup(work)" >
           {{ work.title }}
         </div>
       </div>
@@ -19,7 +19,7 @@
       </template>
       <template #popup-content>
         <div class="popup-stack">
-          <span>Стек:</span> {{ workItemInfo.stack }}
+          <span>{{ $i18n('app.stack') }}:</span> {{ workItemInfo.stack }}
         </div>
         <div class="popup-image">
           <img :src="workItemInfo.urlWorkMockup" alt="" />
@@ -58,7 +58,7 @@ export default {
           type: 'site',
         },
         {
-          title: 'Сайт детского лагеря “Семь континентов”',
+          title: this.$i18n('works.continents_title'),
           urlWorkImage: require('@/assets/images/screenshots/continent.jpg'),
           stack: 'Html, Scss, JavaScript, Jquery, Gulp, Bem',
           urlWorkMockup: require('@/assets/images/mockups/continent.jpg'),
@@ -67,7 +67,7 @@ export default {
           type: 'site',
         },
         {
-          title: 'Веб приложение для расчета ипотеки',
+          title: this.$i18n('works.mortgages_title'),
           urlWorkImage: require('@/assets/images/screenshots/calc.jpg'),
           stack: 'Vue.js, Options API, Javascript, SCSS, Webpack, Firebase',
           urlWorkMockup: require('@/assets/images/mockups/calc.jpg'),
@@ -76,7 +76,7 @@ export default {
           type: 'app',
         },
         {
-          title: 'Сайт интернет аукциона  “Luxtrader”',
+          title: this.$i18n('works.lux_title'),
           urlWorkImage: require('@/assets/images/screenshots/lux.jpg'),
           stack: 'Html, Scss, JavaScript, Jquery, Gulp, Bem',
           urlWorkMockup: require('@/assets/images/mockups/lux.jpg'),
@@ -85,7 +85,7 @@ export default {
           type: 'site',
         },
         {
-          title: 'Веб приложение онлайн банка',
+          title: this.$i18n('works.bank_title'),
           urlWorkImage: require('@/assets/images/screenshots/bank.jpg'),
           stack:
             'Vue.js, Composition API, Javascript, SCSS, Webpack, Firebase, JWT',
@@ -95,7 +95,7 @@ export default {
           type: 'app',
         },
         {
-          title: 'Интернет магазин спортивных товаров',
+          title: this.$i18n('works.logo_title'),
           urlWorkImage: require('@/assets/images/screenshots/logo.jpg'),
           stack: 'Html, Scss, JavaScript, Jquery, Gulp, Bem',
           urlWorkMockup: require('@/assets/images/mockups/logo.jpg'),
@@ -104,7 +104,7 @@ export default {
           type: 'site',
         },
         {
-          title: 'Сайт ресторана “PrimeOne”',
+          title: this.$i18n('works.primeone_title'),
           urlWorkImage: require('@/assets/images/screenshots/primeone.jpg'),
           stack: 'Html, Scss, JavaScript, Jquery, Gulp, Bem',
           urlWorkMockup: require('@/assets/images/mockups/primeone.jpg'),
@@ -113,7 +113,7 @@ export default {
           type: 'site',
         },
         {
-          title: 'Сайт маркетинг агенства',
+          title: this.$i18n('works.smm_title'),
           urlWorkImage: require('@/assets/images/screenshots/smm.jpg'),
           stack: 'Html, Less, Jquery, Bootstrap, Gulp',
           urlWorkMockup: require('@/assets/images/mockups/smm.jpg'),
@@ -122,7 +122,7 @@ export default {
           type: 'site',
         },
         {
-          title: 'Сайт студии йоги',
+          title: this.$i18n('works.yoga_title'),
           urlWorkImage: require('@/assets/images/screenshots/yoga.jpg'),
           stack: 'Html, Less, Jquery, Gulp',
           urlWorkMockup: require('@/assets/images/mockups/yoga.jpg'),
@@ -131,7 +131,7 @@ export default {
           type: 'site',
         },
         {
-          title: 'Сайт туристического агенства “Аркадия тур”',
+          title: this.$i18n('works.arcad_title'),
           urlWorkImage: require('@/assets/images/screenshots/travel.jpg'),
           stack: 'Html, Less, Jquery, Gulp',
           urlWorkMockup: require('@/assets/images/mockups/egypt.jpg'),
@@ -140,7 +140,7 @@ export default {
           type: 'site',
         },
         {
-          title: 'Сайт туристического агенства “Кураж тур”',
+          title: this.$i18n('works.curaj_title'),
           urlWorkImage: require('@/assets/images/screenshots/kuraj.jpg'),
           stack: 'Html, Less, Jquery, Gulp, Bem',
           urlWorkMockup: require('@/assets/images/mockups/kuraj.jpg'),
@@ -149,7 +149,7 @@ export default {
           type: 'site',
         },
         {
-          title: 'Сайт швейного ателье “Jutan”',
+          title: this.$i18n('works.jutan_title'),
           urlWorkImage: require('@/assets/images/screenshots/jutan.jpg'),
           stack: 'Html, Less, Jquery, Gulp',
           urlWorkMockup: require('@/assets/images/mockups/jutan.jpg'),
@@ -163,8 +163,8 @@ export default {
       isModalOpen: false,
     }
   },
-  created(){
-    this.workItemsInfo = this.workItems
+  beforeMount() {
+    this.workItemsInfo = this.workItems.filter(item => this.currentFilteredItem === 'all' ? item.type === 'site' || 'app' : item.type === this.currentFilteredItem)
   },
   methods: {
     showPopup(data) {
@@ -177,7 +177,7 @@ export default {
     },
   },
   watch: {
-    currentFilterItem(value) {
+    currentFilteredItem(value) {
       if (value === 'all') {
         this.workItemsInfo = this.workItems
       } else if (value === 'site') {
@@ -193,9 +193,9 @@ export default {
   computed: {
     visibleWorks() {
       return this.workItemsInfo.filter((_, idx) => idx + 1 <= this.workToShow)
-    },
+    }
   },
-  props: ['currentFilterItem', 'workToShow'],
+  props: ['currentFilteredItem', 'workToShow'],
   emits: ['updateLength'],
 }
 </script>

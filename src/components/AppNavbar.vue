@@ -193,6 +193,7 @@ export default {
 
     & > li {
       margin-bottom: 30px;
+      margin-right: 0;
     }
 
     &:last-child {

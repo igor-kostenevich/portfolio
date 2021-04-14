@@ -20,7 +20,7 @@
                 <slot name="popup-footer"></slot>
               </div>
               <button class="btn content-popup__close-btn" @click="hideContent">
-                <slot name="popup-close-button">Закрыть</slot>
+                <slot name="popup-close-button">{{ $i18n('app.btnClose')}}</slot>
               </button>
             </div>
           </div>

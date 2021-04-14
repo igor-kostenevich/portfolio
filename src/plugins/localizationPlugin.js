@@ -1,6 +1,6 @@
 export default {
   install(app, options) {
-    let current = 'ru'
+    let current = 'en'
 
     const changeLanguage = name => current = name
 

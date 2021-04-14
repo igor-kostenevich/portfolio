@@ -36,8 +36,8 @@ export default {
   data() {
     return {
       langItems: [
-        { name: 'РУС', locale: 'ru' },
         { name: 'EN', locale: 'en' },
+        { name: 'РУС', locale: 'ru' }
       ],
       activeLangIndex: 0,
     }

@@ -1,5 +1,5 @@
 <template>
-  <h3 class="skills__title title">Навыки</h3>
+  <h3 class="skills__title title">{{ $i18n('app.skillsTitle') }}</h3>
   <ul class="skills__list">
     <li v-for="skill in hardSkillsList" :key="skill">{{ skill }}</li>
   </ul>
