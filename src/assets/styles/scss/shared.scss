@@ -37,7 +37,14 @@ html {
 }
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   overflow-x: hidden;
+}
+
+.content {
+  flex: 1 1 100%;
 }
 
 body {

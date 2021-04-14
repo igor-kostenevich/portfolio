@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header__container container">
       <router-link to="/home" class="header-logo">
-        <img src="@/assets/images/logo.png" alt="Igor Kostenevich logotype" />
+        <img data-goto="#main-section" src="@/assets/images/logo.png" alt="Igor Kostenevich logotype" />
       </router-link>
       <div class="header-box">
         <app-navbar class="header__menu"></app-navbar>

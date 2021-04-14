@@ -57,6 +57,9 @@ import AppSocialBlock from '../components/AppSocialBlock'
 
 export default {
   name: 'Home',
+  created() {
+    document.title = 'Igor Kostenevich'
+  },
   components: { AppSocialBlock, AppHardSkillsBlock, TheWorks}
 }
 </script>

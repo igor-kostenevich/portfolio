@@ -1,20 +1,20 @@
 <template>
-  <div class="wrapper" v-cloak>
+  <div class="wrapper">
+    <app-loader></app-loader>
     <the-header></the-header>
     <router-view />
     <the-footer></the-footer>
   </div>
+
 </template>
 
 <script>
+import AppLoader from './components/AppLoader'
 import TheFooter from './components/TheFooter'
 import TheHeader from './components/TheHeader'
 
 export default {
-  data () {
-    return {}
-  },
-  components: { TheHeader, TheFooter, }
+  components: { TheHeader, TheFooter, AppLoader, }
 }
 </script>
 

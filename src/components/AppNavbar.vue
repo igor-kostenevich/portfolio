@@ -33,6 +33,7 @@ export default {
 
     onMenuLinkScroll(e) {
       const menuLink = e.target
+
       if (menuLink.dataset.goto && document.querySelector(menuLink.dataset.goto)) {
         const gotoBlock = document.querySelector(menuLink.dataset.goto)
         const heightHeader = document.querySelector('header').offsetHeight
@@ -52,11 +53,9 @@ export default {
   },
   mounted() {
     // smоoth scrolling
-    const menuLinks = document.querySelectorAll('.menu__link[data-goto]')
-    if (menuLinks.length) {
-      menuLinks.forEach(link => {
-        link.addEventListener('click', this.onMenuLinkScroll)
-      })
+    const menuLinksScrolling = document.querySelectorAll('[data-goto]')
+    if (menuLinksScrolling.length) {
+      menuLinksScrolling.forEach(link => link.addEventListener('click', this.onMenuLinkScroll))
     }
   },
 }
