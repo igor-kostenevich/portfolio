@@ -9,8 +9,8 @@
     </div>
     <nav class="menu__body" :class="{ active: activeClass }">
       <ul class="menu__list">
-        <li><a data-goto="#skills" href="#" class="menu__link text-decoration">Обо мне</a></li>
-        <li><a data-goto="#works" href="#" class="menu__link text-decoration">Мои работы</a></li>
+        <li><a data-goto="#skills" href="#" class="menu__link text-decoration">{{ $i18n('links.aboutMe') }}</a></li>
+        <li><a data-goto="#works" href="#" class="menu__link text-decoration">{{ $i18n('links.myWorks') }}</a></li>
       </ul>
     </nav>
   </div>
@@ -192,6 +192,7 @@ export default {
 
     & > li {
       margin-bottom: 30px;
+      margin-right: 0;
     }
 
     &:last-child {

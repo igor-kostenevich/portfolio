@@ -2,8 +2,8 @@
   <div class="wrapper">
     <app-loader></app-loader>
     <the-header></the-header>
-    <router-view />
-    <the-footer></the-footer>
+    <router-view/>
+    <the-footer :key="locale"></the-footer>
   </div>
 
 </template>
@@ -14,7 +14,16 @@ import TheFooter from './components/TheFooter'
 import TheHeader from './components/TheHeader'
 
 export default {
-  components: { TheHeader, TheFooter, AppLoader, }
+  data () {
+    return {
+    }
+  },
+  computed: {
+    locale() {
+      return this.$store.getters.changeLocale
+    }
+  },
+  components: { TheHeader, TheFooter, AppLoader}
 }
 </script>
 

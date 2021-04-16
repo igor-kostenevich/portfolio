@@ -1,6 +1,6 @@
 <template>
-  <main class="content">
-    <section class="content__fullscreen" id="main-section">
+  <main class="content"  >
+    <section class="content__fullscreen" id="main-section" :key="locale">
       <div class="main-screen container">
         <div class="main-screen__column">
           <div class="main-screen__image">
@@ -9,36 +9,26 @@
         </div>
         <div class="main-screen__column">
           <div class="main-screen__info">
-            <h1 class="main-screen__title">Игорь Костеневич</h1>
-            <h3 class="main-screen__subtitle">Front-end разработчик</h3>
+            <h1 class="main-screen__title"> {{$i18n('app.name') }}</h1>
+            <h3 class="main-screen__subtitle">{{$i18n('app.mainDescr') }}</h3>
             <app-social-block></app-social-block>
           </div>
         </div>
       </div>
     </section>
-    <section class="content__skills skills" id="skills">
+    <section class="content__skills skills" id="skills" :key="locale">
       <div class="skills__column">
         <div class="skills__box">
-          <h3 class="skills__title title">Обо мне</h3>
-          <p class="skills__text">
-            Занимаюсь разработкой адаптивных и кроссбраузерных веб-сайтов и
-            приложений.
-          </p>
-          <p class="skills__text">
-            Развиваюсь в направлении frontend-разработки. Изучаю новые
-            технологии и способы их применения на практике. На данный момент
-            совершенствую знания нативного JavaScript и фреймворка Vue.js.
-          </p>
-          <p class="skills__text">
-            Обладаю хорошими навыками коммуникации, веду активный образ жизни,
-            умею соблюдать сроки и стоически относиться к трудностям.
-          </p>
+          <h3 class="skills__title title"> {{ $i18n('app.withMeTitle') }} </h3>
+          <p class="skills__text"> {{ $i18n('text.aboutText_1') }} </p>
+          <p class="skills__text"> {{ $i18n('text.aboutText_2') }} </p>
+          <p class="skills__text">{{ $i18n('text.aboutText_3') }} </p>
           <a
-            href="ikostenevich_cv.pdf"
-            download="ikostenevich_cv_ru.pdf"
+            :href="$store.getters.currentLocale === 'ru' ? 'ikostenevich_cv_ru.pdf' : 'ikostenevich_cv_en.pdf'"
+            download
             target="_blank"
             class="download__cv text-decoration"
-            >Скачать резюме</a
+            > {{ $i18n('links.downloadCV')}} </a
           >
         </div>
       </div>
@@ -60,6 +50,13 @@ export default {
   created() {
     document.title = 'Igor Kostenevich'
   },
+
+  computed: {
+    locale() {
+      return this.$store.getters.changeLocale
+    }
+  },
+  
   components: { AppSocialBlock, AppHardSkillsBlock, TheWorks}
 }
 </script>
@@ -125,7 +122,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 50px;
+    padding-left: 50px;
 
     &:first-child {
       border-right: 2px solid #ffffff;
