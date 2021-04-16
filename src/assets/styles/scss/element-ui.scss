@@ -1,0 +1,26 @@
+.el-loading-mask {
+  height: 100%;
+}
+
+.el-loading-spinner {
+  top: 50%;
+  margin-top: -21px;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+}
+
+.el-loading-spinner .circular {
+  height: 42px;
+    width: 42px;
+    animation: loading-rotate 2s linear infinite;
+}
+
+.el-loading-spinner .path {
+  animation: loading-dash 1.5s ease-in-out infinite;
+  stroke-dasharray: 90,150;
+  stroke-dashoffset: 0;
+  stroke-width: 2;
+  stroke: $decor-color;
+  stroke-linecap: round;
+}

@@ -7,7 +7,7 @@
     >
       <div class="works-box__item works-item">
         <div class="works-item__image" @click="showPopup(work)">
-          <img :src="work.urlWorkImage" alt="" />
+          <div class="loader-img" v-loading="loading"><img :src="work.urlWorkImage" alt="" /></div>
         </div>
         <div class="works-item__title" @click="showPopup(work)">
           {{ work.title }}
@@ -25,8 +25,8 @@
         <div class="popup-stack">
           <span>Стек:</span> {{ workItemInfo.stack }}
         </div>
-        <div class="popup-image">
-          <img :src="workItemInfo.urlWorkMockup" alt="" />
+        <div class="popup-image" >
+          <div class="loader-img" v-loading="loading"><img :src="workItemInfo.urlWorkMockup" alt="" /></div>
         </div>
       </template>
       <template #popup-footer>
@@ -48,14 +48,16 @@
 <script>
 import AppModal from './AppModal'
 import { workItems } from '@/data/workItems'
+import { ElLoading } from 'element-plus';
 
 export default {
-  components: { AppModal },
+  components: { AppModal, ElLoading},
   data() {
     return {
       workItemsInfo: workItems,
       workItemInfo: {},
       isModalOpen: false,
+      loading: true
     }
   },
   methods: {
@@ -148,6 +150,7 @@ export default {
       top: 0;
       left: 0;
       transition: all 0.3s ease;
+      z-index: 5;
 
       &:hover {
         cursor: pointer;
@@ -189,6 +192,14 @@ export default {
   overflow: hidden;
   margin: 0px 0px 70px 0px;
 
+  .loader-img {
+   bottom: 0;
+    top: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -196,6 +207,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 5;
   }
 }
 .popup-link {
@@ -225,4 +237,6 @@ export default {
 .list-works-leave-active {
   transition: all 0.5s ease;
 }
+
+
 </style>
