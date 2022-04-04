@@ -23,8 +23,9 @@
           <p class="skills__text"> {{ $i18n('text.aboutText_1') }} </p>
           <p class="skills__text"> {{ $i18n('text.aboutText_2') }} </p>
           <p class="skills__text">{{ $i18n('text.aboutText_3') }} </p>
+           <!-- :href="$store.getters.currentLocale === 'ru' ? 'ikostenevich_cv_ru.pdf' : 'ikostenevich_cv_en.pdf'" -->
           <a
-            :href="$store.getters.currentLocale === 'ru' ? 'ikostenevich_cv_ru.pdf' : 'ikostenevich_cv_en.pdf'"
+            href="Igor_Kostenevich_CV.pdf"
             download
             target="_blank"
             class="download__cv text-decoration"
@@ -56,7 +57,7 @@ export default {
       return this.$store.getters.changeLocale
     }
   },
-  
+
   components: { AppSocialBlock, AppHardSkillsBlock, TheWorks}
 }
 </script>

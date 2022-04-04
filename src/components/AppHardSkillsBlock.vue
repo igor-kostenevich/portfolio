@@ -13,19 +13,23 @@ export default {
         'HTML5',
         'CSS3',
         'JavaScript',
-        'JQuery',
-        'Vue.js / Vuex / Vue Router',
+        'Vue.js / Vuex / Vue Router / Composition API',
         'Gulp / Webpack',
+        'Nuxt.js',
         'SCSS / LESS',
         'Npm / Yarn',
+        'TypeScript',
         'Git',
         'Github / Bitbucket',
         'BEM / SOLID',
         'Trello, Clockify',
         'Avocode / Figma',
         'Firebase',
+        'JQuery',
         'Windows / macOS / Ubuntu',
-        `${this.$i18n('app.worksLabel')}: Nuxt.js, OOP, PWA`
+        'Highchart / TradingView / Three.js',
+        'Rest API / GraphQL / Axios',
+        `${this.$i18n('app.worksLabel')}: Node.js, OOP, PWA`
       ]
     }
   },
