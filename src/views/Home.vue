@@ -22,7 +22,7 @@
           <h3 class="skills__title title"> {{ $i18n('app.withMeTitle') }} </h3>
           <p class="skills__text"> {{ $i18n('text.aboutText_1') }} </p>
           <p class="skills__text"> {{ $i18n('text.aboutText_2') }} </p>
-          <p class="skills__text">{{ $i18n('text.aboutText_3') }} </p>
+          <!-- <p class="skills__text">{{ $i18n('text.aboutText_3') }} </p> -->
            <!-- :href="$store.getters.currentLocale === 'ru' ? 'ikostenevich_cv_ru.pdf' : 'ikostenevich_cv_en.pdf'" -->
           <a
             href="Igor_Kostenevich_CV.pdf"

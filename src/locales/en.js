@@ -22,6 +22,8 @@ export const en = {
     downloadCV: 'Download CV'
   },
   works: {
+    todo: 'To-Do List',
+    crud: "CRUD app for users",
     provid_title: 'Mobile UI application website “Newprovidence”',
     continents_title: "Website of the children's camp “Seven continents”",
     mortgages_title: 'Web application for calculating mortgages',
@@ -37,7 +39,7 @@ export const en = {
   },
   text: {
     aboutText_1: "I'm engaged in the development of responsive and cross-browser websites and applications.",
-    aboutText_2: "I'm developing in the direction of frontend development. I study new technologies and how to apply them in practice. At the moment, I'm improving my knowledge of native JavaScript and the Vue.js framework.",
+    aboutText_2: "I'm developing in the direction of frontend development. I study new technologies and how to apply them in practice. At the moment, I'm improving my knowledge of native JavaScript and the Vue.js framework. I also study Node.js for a full cycle of web interface development",
     aboutText_3: "I've good communication skills, I lead an active lifestyle, I can meet deadlines and be stoic about difficulties.",
   }
 }

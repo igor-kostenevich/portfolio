@@ -50,19 +50,19 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 550px) {
-  .loader {
-    -webkit-transform: scale(0.75);
-    transform: scale(0.75);
-  }
-}
+// @media (max-width: 550px) {
+//   .loader {
+//     -webkit-transform: scale(0.75);
+//     transform: scale(0.75);
+//   }
+// }
 
-@media (max-width: 440px) {
-  .loader {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-}
+// @media (max-width: 440px) {
+//   .loader {
+//     -webkit-transform: scale(0.5);
+//     transform: scale(0.5);
+//   }
+// }
 
 .l_square {
   position: relative;

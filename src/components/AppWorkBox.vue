@@ -50,6 +50,24 @@ export default {
     return {
       workItems: [
         {
+          title: this.$i18n('works.todo'),
+          urlWorkImage: require('@/assets/images/screenshots/todo.jpg'),
+          stack: 'Html, SCSS, JS Native, Parsel, Local Storage, Bem',
+          urlWorkMockup: require('@/assets/images/mockups/todo.png'),
+          urlRepo: 'https://github.com/igor-kostenevich/todo',
+          urlShowProject: 'https://todo-b0760.web.app/',
+          type: 'app',
+        },
+        {
+          title: this.$i18n('works.crud'),
+          urlWorkImage: require('@/assets/images/screenshots/crud.png'),
+          stack: 'Vue, Vuex, Options API, SCSS, Bem',
+          urlWorkMockup: require('@/assets/images/mockups/crud.png'),
+          urlRepo: 'https://github.com/igor-kostenevich/crud-app',
+          urlShowProject: 'https://profile-user-crud.web.app/',
+          type: 'app',
+        },
+        {
           title: this.$i18n('works.provid_title'),
           urlWorkImage: require('@/assets/images/screenshots/prov.jpg'),
           stack: 'Html, Scss, JavaScript, Jquery, Gulp, Bem',
